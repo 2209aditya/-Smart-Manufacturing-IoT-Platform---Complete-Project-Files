@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: telemetry-ingestion
+  
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: telemetry-group
+      auto-offset-reset: earliest
+    producer:
+      retries: 3
+      acks: all
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,metrics,info
+  
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  level:
+    com.iot: DEBUG
+    org.springframework: INFO

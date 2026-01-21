@@ -1,0 +1,13 @@
+replicaCount: 3
+
+image:
+  repository: acr.azurecr.io/iot/telemetry-ingestion
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+resources:
